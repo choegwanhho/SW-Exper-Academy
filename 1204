@@ -1,0 +1,52 @@
+#include <iostream>
+#include <cstdio>
+
+using namespace std;
+
+int main()
+{
+    int T = 0;              // 테스트 케이스 갯수
+    int Tnum = 0;           // 테스트 케이스의 번호 
+
+    int num = 0;            // 점수를 입력받을 변수
+    int score[101] = { 0 }; // 0점부터 100점의 갯수 배열
+    
+    int maxscore[2] = { 0 };       // 갯수가 가장많은 점수, 갯수
+
+    cin >> T;
+
+    for (int i=0 ; i < T ; i++)
+    {
+        cin >> Tnum;
+        
+        for (int j = 0; j < 1000; j++) //1000명 학생의 점수 갯수를 카운트 
+        {
+            cin >> num;
+            score[num]+=1;
+            //cout << num << "점의 갯수 : " << score[num] << endl;
+        }
+
+        //for (int k = 0; k < 101; k++) // 점수 배열 확인용
+        //{
+        //    cout << "#####" << k << " 점의 갯수 : " << score[k] << endl;
+        //}
+
+        for (int k = 0; k < 101; k++) // 점수 갯수가 제일 많은것을 찾기
+        {
+            if (score[k] >= maxscore[1])
+            {
+                //cout << "score[k] : " << score[k] << " maxscore[0] : " << maxscore[0] << " maxscore[1] : " << maxscore[1] << endl;
+                maxscore[0] = k; 
+                maxscore[1] = score[k];
+                //cout << "가장 많은 점수 : " << maxscore[0] << "가장 많은 점수의 갯수 : " << maxscore[1] << endl;
+            }      
+            score[k] = 0;
+        }
+        cout << "#" << Tnum << " ";
+        cout << maxscore[0] << endl; // 점수를 출력후 초기화
+
+        
+        maxscore[0] = 0;
+        maxscore[1] = 0;
+    }
+}
