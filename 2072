@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+ 
+int main()
+{
+    int numa = 0;           // 입력받을 정수 배열의 갯수
+    int numb[10] = {0};     // 정수를 저장할 배열
+    int output = 0;         // 홀수들의 합
+ 
+    cin >> numa;
+         
+    for (int a = 0; a < numa; a++)                  // 입력받은 정수 배열 갯수만큼 반복
+    {
+        for (int b = 0; b < 10; b++)
+        {
+            cin >> numb[b];
+            //cout << "\t" << numb[b] << "\t";      // 입력값 확인용
+            if ( (numb[b] % 2) == 1)                // 입력값이 홀수이면 총합에 더해주기
+                output = output + numb[b];            
+        }            
+ 
+        cout << "#" << a + 1 << " " << output << "\n";
+        output = 0;                                 // 배열 홀수 총합 초기화
+ 
+    }    
+}
