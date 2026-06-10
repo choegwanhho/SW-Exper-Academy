@@ -1,0 +1,46 @@
+#include <iostream>
+ 
+using namespace std;
+ 
+typedef long long ll;
+ 
+int main()
+{
+    int T = 0;   // 테스트 케이스의 수
+    int* arr = new int[1000001] {};  // 테스트 케이스 동적 배열 선언
+    int max = 0; // 판매값
+ 
+    cin >> T;
+ 
+    for (int a = 0; a < T; a++)
+    {       
+        int N = 0;    // 예측 가능한 일수 (2 <= N <= 1e6)
+        ll sum = 0;   // 출력할 최대 이익 (0 <= sum <= 1e6-1 * 9999)
+ 
+        cin >> N;     
+                 
+        for (int b = 0; b < N; b++)
+        {
+            cin >> arr[b];
+            //cout << arr[b] << " "; // 입력값 확인용
+        }   
+ 
+        max = arr[N - 1];
+ 
+        for (int b = N-1; 0 <= b-1 ; b--)    // 
+        {            
+            if (max > arr[b-1])              // 구매값이 판매값보다 작으면 최대 이윤 수정
+            {
+                sum += (max - arr[b-1]);
+                //cout << "이윤 발생\nsum : " << sum << "\n";
+            }
+            else                             // 새로운 판매값으로 이동
+            {
+                max = arr[b-1];
+                //cout << "새로운 판매일자 이동\n새로운 판매값 : " << max << "\n";
+            }           
+        }
+        cout << "#" << a + 1 << " " << sum << "\n"; // 최종 답 출력        
+    }
+    delete[] arr;
+}
