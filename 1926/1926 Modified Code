@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    int N = 0;
+    cin >> N;
+
+    for (int i = 1; i <= N; i++)
+    {
+        int clapnum = 0;
+
+        for (char c : to_string(i))
+            if (c == '3' || c == '6' || c == '9')
+                clapnum++;
+
+        if (clapnum > 0)
+            cout << string(clapnum, '-') << " ";
+        else
+            cout << i << " ";
+    }
+
+    return 0;
+}
