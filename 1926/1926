@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    int N = 0; // 10<= N <= 1000 인 정수
+    cin >> N;
+    
+    for (int i = 1; i <= N; i++) 
+    {
+        bool clap = false; // 박수 여부 
+        int clapnum = 0;   // 쳐야할 박수 갯수
+        int numlength = 0; // 현재 i의 자릿수
+        int copy = 0;      // 연산을 위한 i값 복사본
+
+        numlength = to_string(i).length();
+        copy = i;
+
+        for (int j = 1; j <= numlength; j++) // i의 자릿수만큼 확인 
+        {
+            if ( ( (copy % 10) !=0 ) && ( (copy%10) % 3 == 0) ) // 낮은자리수부터 체크해서 3의 배수이면 clapnum++
+            {
+                clap = true;
+                clapnum++;                
+            }
+            copy /= 10; // 다음 자리수로 넘어가기 위한 연산
+        }
+
+        if (clap) // 박수를 쳐야하면 박수 갯수만큼 - 출력
+        {
+            for (int j = 1; j <= clapnum; j++)
+            {
+                cout << "-";
+            }
+            cout << " ";
+        }
+        else  // 해당사항 없으면 값 그대로 출력
+            cout << i << " ";
+    }
+    return 0;
+}
