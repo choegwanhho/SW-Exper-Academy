@@ -1,0 +1,43 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int maxDay[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+//             0월  1  2   3   4   5   6   7   8   9  10  11  12
+// 0월은 없으니 0으로 채워서 인덱스를 월과 맞춤
+
+bool isValidDate(int year, int month, int day)
+{
+    if (month < 1 || month > 12) return false;
+    if (day < 1 || day > maxDay[month]) return false;
+    return true;
+}
+
+int main()
+{
+    int T = 0;
+    cin >> T;
+
+    for (int i = 1; i <= T; i++)
+    {
+        cout << "#" << i << " ";
+
+        int input = 0;
+        cin >> input;
+
+        int day   = input % 100;       input /= 100;
+        int month = input % 100;       input /= 100;
+        int year  = input;
+
+        if (isValidDate(year, month, day))
+        {
+            cout << setfill('0')
+                 << setw(4) << year  << "/"
+                 << setw(2) << month << "/"
+                 << setw(2) << day   << "\n";
+        }
+        else
+            cout << "-1\n";
+    }
+    return 0;
+}
