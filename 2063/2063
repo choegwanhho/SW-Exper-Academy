@@ -1,0 +1,47 @@
+#include <iostream>
+
+using namespace std;
+
+const int MAX_NUM = 200;
+
+int input[MAX_NUM];
+int N;    // 9<= N <= 199 의 홀수 정수
+
+void quickSort(int first, int last) // 입렵받은 배열의 첫주소와 마지막 주소를 받아 정렬
+{
+    if (first < last) 
+    {
+        int pivot = first;
+        int i = first; 
+        int j = last;
+
+        while (i < j) 
+        {
+            while (input[i] <= input[pivot] && i < last) // i는 pivot보다 큰값을 찾아 오른쪽 이동
+                i++;
+            while (input[j] > input[pivot])              // j는 pivot보다 작은값을 찾아 왼쪽 이동
+                j--;
+            if (i < j) 
+                swap(input[i], input[j]);
+         }
+        swap(input[pivot], input[j]); // pivot값을 중앙으로 이동
+        quickSort(first, j - 1);      // 왼 배열 재귀 호출(pivot값보다 작은값의 배열)
+        quickSort(j + 1, last);       // 오른 배열 재귀 호출(pivot값보다 큰값의 배열)
+    }
+}
+
+int main() 
+{
+    cin >> N;
+    
+    for (int i = 0; i < N; i++)
+    {
+        cin >> input[i];
+    }
+
+    quickSort(0, N - 1);
+    
+	cout << input[N / 2] << endl;   
+
+    return 0;
+}
